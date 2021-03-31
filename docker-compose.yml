@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  base:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - GLOBES=globes-3.2.18
+    image: base_image
+    working_dir: /
+
+  bash:
+    image: base_image
+    user: root
+    volumes:
+      - .:/usr/local
+    working_dir: /usr/local
+    entrypoint: /bin/sh
